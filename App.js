@@ -11,7 +11,7 @@ LogBox.ignoreLogs(["AsyncStorage has been extracted from"]);
 // Create the navigator
 const Stack = createNativeStackNavigator();
 
-import { initializeApp } from "firebase/app";
+import { initializeApp, initializeAuth } from "firebase/app";
 import {
   getFirestore,
   disableNetwork,
@@ -45,6 +45,8 @@ const App = () => {
 
   //define a new state that represents the network connectivity status
   const connectionStatus = useNetInfo();
+
+  const auth = initializeAuth(app, { persistence: getReactNativePersistence(ReactNativeAsyncStorage), });
 
   //display an alert popup if connection is lost
   //Note that connectionStatus.isConnected is used as a dependency value of useEffect().
